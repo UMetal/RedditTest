@@ -65,8 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
                     ExtractXML extractXML2 = new ExtractXML(entrys.get(i).getContent(), "<img src=");
 
-                 //   ExtractXML extractXML3 = new ExtractXML(entrys.get(i).getContent(), "<a href=https://i.redd.it/");
-
                     try {
                         postContent.add(extractXML2.start().get(0));
                     } catch (NullPointerException e) {

@@ -97,9 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-
-
-
                 ListView listView = (ListView) findViewById(R.id.listView);
                 CustomListAdapter customListAdapter = new CustomListAdapter(MainActivity.this, R.layout.card_layout_main, posts);
                 listView.setAdapter(customListAdapter);

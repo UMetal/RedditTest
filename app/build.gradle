@@ -44,19 +44,13 @@ dependencies {
         exclude group: 'stax', module: 'stax'
     }
 
-    //Retrofit Gson converter
-   // implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
-
     //cardview
 
     implementation 'androidx.cardview:cardview:1.0.0'
 
-
     //Universal Image Loader
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
-    //Library for Coordinator Layout
-   // implementation 'androidx.support:design:25.1.0'
 
 
 }

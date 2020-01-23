@@ -1,6 +1,7 @@
 package com.example.android.reddittest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
+import com.example.android.reddittest.image.ImageActivity;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -19,12 +20,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class CustomListAdapter  extends ArrayAdapter<Post> {
@@ -100,7 +96,11 @@ public class CustomListAdapter  extends ArrayAdapter<Post> {
                 holder = (ViewHolder) convertView.getTag();
                 result = convertView;
             }
-
+            holder.thumbnailURL.setOnClickListener(v -> {
+                Intent intent = new Intent(mContext, ImageActivity.class);
+                intent.putExtra("image", imgUrl);
+                mContext.startActivity(intent);
+            });
 
             holder.title.setText(title);
             holder.author.setText(author);
@@ -111,7 +111,7 @@ public class CustomListAdapter  extends ArrayAdapter<Post> {
 
             int defaultImage = mContext.getResources().getIdentifier("@drawable/image_failed",null,mContext.getPackageName());
 
-            //create display options
+            //create display option
             DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true)
                     .cacheOnDisc(true).resetViewBeforeLoading(true)
                     .showImageForEmptyUri(defaultImage)
@@ -164,7 +164,7 @@ public class CustomListAdapter  extends ArrayAdapter<Post> {
                 mContext)
                 .defaultDisplayImageOptions(defaultOptions)
                 .memoryCache(new WeakMemoryCache())
-                .discCacheSize(100 * 1024 * 1024).build();
+                .diskCacheSize(100 * 1024 * 1024).build();
 
         ImageLoader.getInstance().init(config);
         // END - UNIVERSAL IMAGE LOADER SETUP
